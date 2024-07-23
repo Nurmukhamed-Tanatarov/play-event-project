@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: SECURITY-SERVICE
+          uri: lb://SECURITY-SERVICE
+          predicates:
+            - Path=/gateway/api/s1/**
+          filters:
+            - StripPrefix=1
+        - id: IAC
+          uri: lb://IAC
+          predicates:
+            - Path=/gateway/api/s2/**
+          filters:
+            - StripPrefix=1
+        - id: MAC-service
+          uri: lb://MAC-service
+          predicates:
+            - Path=/gateway/api/s2/**
+          filters:
+            - StripPrefix=1
+
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://172.30.223.245:4200"
+            allowedHeaders: "*"
+            allowedMethods: "*"
+    discovery:
+      enabled: true
+  jwt:
+    privateKey: 843567893696976453275974432697R634976R738467TR678T34865R6834R8763T478378637664538745673865783678548735687R3
+    expiration: 10800000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+
+server:
+  port: 8080
