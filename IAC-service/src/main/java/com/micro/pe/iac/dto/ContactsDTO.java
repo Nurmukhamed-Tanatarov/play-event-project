@@ -6,9 +6,9 @@ import lombok.Data;
 public class ContactsDTO {
 
     private String description;
-    private String full_address;
-    private String phone_number;
+    private String fulladdress;
+    private String phonenumber;
     private String email;
-    private int manager_id;
+    private int managerId;
 
 }

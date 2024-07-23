@@ -1,11 +1,13 @@
 package com.micro.pe.iac.controller;
 
-import com.micro.pe.iac.entity.Translations;
+import com.micro.pe.iac.dto.TranslationsDTO;
+import com.micro.pe.iac.dto.ResponseTranslationsDTO;
 import com.micro.pe.iac.service.TranslationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -16,33 +18,32 @@ public class TranslationController {
     private TranslationService translationService;
 
     @PostMapping("/add-translation")
-    public ResponseEntity<Translations> addTranslation(@RequestBody Translations translations) {
-        Translations createdTranslation = translationService.createTranslation(translations);
+    public ResponseEntity<ResponseTranslationsDTO> addTranslation(@RequestBody TranslationsDTO translationsDTO) {
+        ResponseTranslationsDTO createdTranslation = translationService.createTranslation(translationsDTO);
         return new ResponseEntity<>(createdTranslation, HttpStatus.CREATED);
     }
 
     @GetMapping("/findTranslationByID/{id}")
-    public ResponseEntity<Translations> findTranslationByID(@PathVariable("id") Integer id) {
-        Translations translations = translationService.findTranslationById(id);
-        return new ResponseEntity<>(translations, HttpStatus.OK);
+    public ResponseEntity<ResponseTranslationsDTO> findTranslationByID(@PathVariable("id") Integer id) {
+        ResponseTranslationsDTO translation = translationService.findTranslationById(id);
+        return new ResponseEntity<>(translation, HttpStatus.OK);
     }
 
     @GetMapping("/findAllTranslations")
-    public ResponseEntity<List<Translations>> findAllTranslations() {
-        List<Translations> translations = translationService.findAllTranslations();
+    public ResponseEntity<List<ResponseTranslationsDTO>> findAllTranslations() {
+        List<ResponseTranslationsDTO> translations = translationService.findAllTranslations();
         return new ResponseEntity<>(translations, HttpStatus.OK);
     }
 
     @PutMapping("/updateTranslations/{id}")
-    public ResponseEntity<Translations> updateTranslation(@PathVariable("id") Integer id, @RequestBody Translations translations) {
-        Translations updatedTranslation = translationService.updateTranslation(id, translations);
+    public ResponseEntity<ResponseTranslationsDTO> updateTranslation(@PathVariable("id") Integer id, @RequestBody TranslationsDTO translationsDTO) {
+        ResponseTranslationsDTO updatedTranslation = translationService.updateTranslation(id, translationsDTO);
         return new ResponseEntity<>(updatedTranslation, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete-translation/{id}")
-    public ResponseEntity<Translations> deleteTranslation(@PathVariable("id") Integer id) {
+    public ResponseEntity<Void> deleteTranslation(@PathVariable("id") Integer id) {
         translationService.deleteTranslation(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }

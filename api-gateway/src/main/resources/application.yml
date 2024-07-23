@@ -19,7 +19,7 @@ spring:
         - id: MAC-service
           uri: lb://MAC-service
           predicates:
-            - Path=/gateway/api/s2/**
+            - Path=/gateway/api/s3/**
           filters:
             - StripPrefix=1
 

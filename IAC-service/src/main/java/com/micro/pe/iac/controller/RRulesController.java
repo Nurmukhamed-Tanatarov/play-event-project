@@ -1,5 +1,7 @@
 package com.micro.pe.iac.controller;
 
+import com.micro.pe.iac.dto.RentRulesDTO;
+import com.micro.pe.iac.dto.ResponseRentRulesDTO;
 import com.micro.pe.iac.entity.RentRules;
 import com.micro.pe.iac.service.RRulesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,27 +18,27 @@ public class RRulesController {
     private RRulesService rulesService;
 
     @PostMapping("/create-rule")
-    public ResponseEntity<RentRules> saveRules(@RequestBody RentRules rules) {
-        RentRules savedRules = rulesService.createRentRules(rules);
-        return new ResponseEntity<>(savedRules, HttpStatus.CREATED);
+    public ResponseEntity<ResponseRentRulesDTO> saveRules(@RequestBody RentRulesDTO rulesDTO) {
+        ResponseRentRulesDTO createdResponseRRDTO = rulesService.createRentRules(rulesDTO);
+        return new ResponseEntity<>(createdResponseRRDTO, HttpStatus.CREATED);
     }
 
     @GetMapping("/getAll-rules")
-    public ResponseEntity<List<RentRules>> getRules() {
-        List<RentRules> rules = rulesService.findAllRentRules();
-        return new ResponseEntity<>(rules, HttpStatus.OK);
+    public ResponseEntity<List<ResponseRentRulesDTO>> getRules() {
+        List<ResponseRentRulesDTO> responseRentRulesDTO = rulesService.findAllRentRules();
+        return new ResponseEntity<>(responseRentRulesDTO, HttpStatus.OK);
     }
 
     @GetMapping("/getRule/{id}")
-    public ResponseEntity<RentRules> getRuleById(@PathVariable("id") int id) {
-        RentRules rentRules = rulesService.findRulesByID(id);
-        return new ResponseEntity<>(rentRules, HttpStatus.OK);
+    public ResponseEntity<ResponseRentRulesDTO> getRuleById(@PathVariable("id") int id) {
+        ResponseRentRulesDTO responserentRulesDTO = rulesService.findRulesByID(id);
+        return new ResponseEntity<>(responserentRulesDTO, HttpStatus.OK);
     }
 
     @PutMapping("/updateRule/{id}")
-    public ResponseEntity<RentRules> updateRule(@PathVariable("id") int id, @RequestBody RentRules rules) {
-        RentRules updatedRules = rulesService.updateRentRules(id, rules);
-        return new ResponseEntity<>(updatedRules, HttpStatus.OK);
+    public ResponseEntity<ResponseRentRulesDTO> updateRule(@PathVariable("id") int id, @RequestBody RentRulesDTO rulesDTO) {
+        ResponseRentRulesDTO updatedRulesDTO = rulesService.updateRentRules(id, rulesDTO);
+        return new ResponseEntity<>(updatedRulesDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteRule/{id}")
