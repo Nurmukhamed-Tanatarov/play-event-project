@@ -16,19 +16,21 @@ spring:
             - Path=/gateway/api/s2/**
           filters:
             - StripPrefix=1
+            - JwtAuthenticationFilter
         - id: MAC-service
           uri: lb://MAC-service
           predicates:
             - Path=/gateway/api/s3/**
           filters:
             - StripPrefix=1
+            - JwtAuthenticationFilter
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOrigins: "http://172.30.223.245:4200"
+            allowedOrigins: "http://localhost:4200"
             allowedHeaders: "*"
             allowedMethods: "*"
     discovery:

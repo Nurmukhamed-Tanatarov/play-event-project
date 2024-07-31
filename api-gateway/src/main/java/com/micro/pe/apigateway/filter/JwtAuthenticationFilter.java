@@ -30,18 +30,15 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
             if (validator.isSecured.test(exchange.getRequest())) {
-                // récupération du header Authorization
                 String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
 
                 if (authHeader != null && authHeader.startsWith("Bearer ")) {
-                    // extraction du token JWT
                     String jwt = authHeader.substring(7);
 
                     if (!jwtService.CheckToken(jwt) && !jwtService.isTokenValid(jwt)) {
                         return this.onError(exchange, "Unauthorized access to the application", HttpStatus.UNAUTHORIZED);
                     }
                 } else {
-                    // Si le header Authorization est manquant
                     throw new RuntimeException("Missing authorization header");
                 }
             }
@@ -51,8 +48,8 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
 
     private Mono<Void> onError(ServerWebExchange exchange, String string, HttpStatus httpStatus) {
         ServerHttpResponse response = exchange.getResponse();
-        response.setStatusCode(httpStatus);  // Définit le code de statut de la réponse HTTP
-        return response.setComplete();  // Indique que la réponse est complète et terminée
+        response.setStatusCode(httpStatus);
+        return response.setComplete();
     }
 
 }

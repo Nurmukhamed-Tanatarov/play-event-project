@@ -17,12 +17,12 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping("/signup")
+    @PostMapping("/sign-up")
     public ResponseEntity<SignupResponse> signUp(@RequestBody SignUpRequest signUpRequest) {
         return authService.signUp(signUpRequest);
     }
 
-    @PostMapping("/signin")
+    @PostMapping("/sign-in")
     public SigninResponse signIn(@RequestBody SignInRequest signInRequest) throws NamingException {
         return authService.signIn(signInRequest);
     }
