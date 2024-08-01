@@ -7,12 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="admin-panel" />
+        <module name="MAC-service" />
+        <module name="security-service" />
         <module name="api-gateway" />
         <module name="spring-micro-playevent" />
         <module name="eureka-server" />
         <module name="IAC-service" />
-        <module name="MAC-service" />
-        <module name="security-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -24,6 +25,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="IAC-service" options="-parameters" />
       <module name="MAC-service" options="-parameters" />
+      <module name="admin-panel" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="gateway-security" options="-parameters" />

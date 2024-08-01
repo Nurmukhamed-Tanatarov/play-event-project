@@ -3,6 +3,7 @@
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/IAC-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/MAC-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/admin-panel/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/api-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eureka-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gateway-security/src/main/java" charset="UTF-8" />

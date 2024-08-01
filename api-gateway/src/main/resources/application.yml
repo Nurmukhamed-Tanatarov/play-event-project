@@ -24,6 +24,13 @@ spring:
           filters:
             - StripPrefix=1
             - JwtAuthenticationFilter
+        - id: admin-panel
+          uri: lb://admin-panel
+          predicates:
+            - Path=/gateway/api/s4/**
+          filters:
+            - StripPrefix=1
+            - JwtAuthenticationFilter
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin

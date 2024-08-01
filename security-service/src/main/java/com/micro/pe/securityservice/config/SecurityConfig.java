@@ -35,6 +35,8 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .requestMatchers("/api/s1/auth/**").permitAll()
                 .requestMatchers("/api/s2/**").authenticated()
+                .requestMatchers("/api/s3/**").authenticated()
+                .requestMatchers("/api/s4/**").authenticated()
                 .anyRequest()
                 .authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
