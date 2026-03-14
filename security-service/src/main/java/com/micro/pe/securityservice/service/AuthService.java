@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -60,6 +61,8 @@ public class AuthService {
 
     public SigninResponse signIn(SignInRequest signinRequest){
         SigninResponse response = new SigninResponse();
+        // admin login : qwerty@gmail.com
+        // admin pwd : passwordNurik123
 
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signinRequest.getEmail(),signinRequest.getPassword()));
